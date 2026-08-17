@@ -105,6 +105,88 @@ print(CC)
 ```
 <img width="680" height="242" alt="image" src="https://github.com/user-attachments/assets/63a21bde-03e4-4b16-afee-34c0f1c5e22e" />
 
+```
+import pandas as pd
+from scipy import stats
+import numpy as np
+df=pd.read_csv("Data_to_Transform.csv")
+print(df)
+```
+<img width="750" height="580" alt="image" src="https://github.com/user-attachments/assets/07ce960a-3e43-4179-ba5d-07c68b40e14c" />
+
+```
+df.skew()
+```
+<img width="351" height="112" alt="image" src="https://github.com/user-attachments/assets/579190fa-fe9f-4c1d-ac9c-032daf0a1a35" />
+
+```
+np.log(df["Highly Positive Skew"])
+```
+<img width="563" height="262" alt="image" src="https://github.com/user-attachments/assets/565f12e6-9410-4673-9d89-0371bed74692" />
+
+```
+np.reciprocal(df["Moderate Positive Skew"])
+```
+<img width="582" height="258" alt="image" src="https://github.com/user-attachments/assets/f542b04c-d559-4ab4-8ef9-3dcfd7bdd3d9" />
+
+```
+np.sqrt(df["Highly Positive Skew"])
+```
+<img width="564" height="264" alt="image" src="https://github.com/user-attachments/assets/287f95eb-0d1c-431c-99fb-51de7589d256" />
+
+```
+np.square(df["Highly Positive Skew"])
+```
+<img width="563" height="261" alt="image" src="https://github.com/user-attachments/assets/c4ce0e95-7b1d-4e90-b1d0-f70079d136dd" />
+
+```
+df["Highly Positive Skew_boxcox"], parameters=stats.boxcox(df["Highly Positive Skew"])
+print(df)
+```
+<img width="760" height="579" alt="image" src="https://github.com/user-attachments/assets/9b297d52-ed1d-42a4-bb1e-87e374febfcf" />
+
+```
+df.skew()
+```
+<img width="394" height="131" alt="image" src="https://github.com/user-attachments/assets/eb97dabd-f5ab-4792-8c98-5d7f50430976" />
+
+```
+df["Highly Negative Skew_yeojohnson"],parameters=stats.yeojohnson(df["Highly Negative Skew"])
+df.skew()
+```
+<img width="432" height="155" alt="image" src="https://github.com/user-attachments/assets/732ee56e-364f-4a8f-b3b5-a9813d2241dc" />
+
+```
+from sklearn.preprocessing import QuantileTransformer
+qt=QuantileTransformer(output_distribution='normal')
+df["Moderate Negative Skew_1"]=qt.fit_transform(df[["Moderate Negative Skew"]])
+print(df)
+```
+<img width="764" height="816" alt="image" src="https://github.com/user-attachments/assets/64e6eb23-b299-47b9-8622-1b82aa7ad948" />
+
+```
+import seaborn as sns
+import statsmodels.api as sm # STATS MODEL- STATISTICAL MODEL TO VISUALIZE DISTRIBUTION
+import matplotlib.pyplot as plt
+sm.qqplot(df["Moderate Negative Skew"],line='45') # QQ - QUANTILE QUANTILE PLOT
+plt.show()
+```
+<img width="752" height="541" alt="image" src="https://github.com/user-attachments/assets/77aa66b8-f084-4f8e-9bac-08b2158b4733" />
+
+```
+sm.qqplot(np.reciprocal(df["Moderate Negative Skew"]),line='45') # RECIPROCAL
+plt.show()
+```
+<img width="743" height="533" alt="image" src="https://github.com/user-attachments/assets/999d9bd2-a37c-468d-ab46-0e7e83393385" />
+
+```
+from sklearn.preprocessing import QuantileTransformer
+qt=QuantileTransformer(output_distribution='normal',n_quantiles=891)
+df["Moderate Negative Skew"]=qt.fit_transform(df[["Moderate Negative Skew"]])
+sm.qqplot(df["Moderate Negative Skew"],line='45')
+plt.show()
+```
+<img width="717" height="537" alt="image" src="https://github.com/user-attachments/assets/a8d44da9-620c-4e89-87f4-aee1d7f60817" />
 
 
 # RESULT:
