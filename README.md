@@ -165,7 +165,6 @@ print(df)
 <img width="764" height="816" alt="image" src="https://github.com/user-attachments/assets/64e6eb23-b299-47b9-8622-1b82aa7ad948" />
 
 ```
-import seaborn as sns
 import statsmodels.api as sm # STATS MODEL- STATISTICAL MODEL TO VISUALIZE DISTRIBUTION
 import matplotlib.pyplot as plt
 sm.qqplot(df["Moderate Negative Skew"],line='45') # QQ - QUANTILE QUANTILE PLOT
